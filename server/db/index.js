@@ -1,23 +1,29 @@
-const createTables = require('./config.js');
-const mysql = require('mysql');
-const Promise = require('bluebird');
-const database = 'UserDashboard';
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1/3000/UserDashboard');
 
-
-const connection = mysql.createConnection({
-  user: 'root', 
-  password: '', 
-  database: database
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+ console.log('working!!!!! db connected')
 })
 
-// const populateCourses = require('./seedCourses.js')
+const userSchema = mongoose.Schema({
+  email: String,
+  password: String,
+  salt : String,
+  firstName : String,
+  lastName: String,
+  description: String,
+  imageUrl: String
+});
 
-const db = Promise.promisifyAll(connection, { multiArgs: true });
+var User = mongoose.model('User', userSchema);
 
-db.connectAsync()
-  .then(() => db.queryAsync(`CREATE DATABASE IF NOT EXISTS ${database}`))
-  .then(() => db.queryAsync(`USE ${database}`))
-  .then(() => createTables(db))
-  .catch(err => console.log(err)) 
+// User.remove({}, function (err) {
+//   if (err) return handleError(err);
+//   // removed!
+// });
 
-module.exports = db;
+
+
+module.exports.User = User;
