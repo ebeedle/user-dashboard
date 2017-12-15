@@ -1,16 +1,11 @@
- import React from 'react';
- import ReactDom from 'react-dom';
+import React from 'react';
+import Routes from './Routes.jsx';
 
-function Dashboard(props) {
-  
-  	return (
-			<div> User Dashboard </div>
-	  )	
-}
+const App = () =>  (
+  <div>
+    <div> hiiiii </div>
+    <Routes />
+  </div>
+)
 
-
-
-  
- ReactDom.render(<Dashboard />, 
- 	document.getElementById('app')
- )
+export default App;

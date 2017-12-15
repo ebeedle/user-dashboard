@@ -1,27 +1,31 @@
-var webpack = require('webpack');
 var path = require('path');
+var SRC_DIR = path.join(__dirname, '/client');
+console.log('srdir :', SRC_DIR)
+console.log(`${SRC_DIR}/index.jsx`)
+var DIST_DIR = path.join(__dirname, '/public');
 
-var BUILD_DIR = path.resolve(__dirname, 'public');
-var APP_DIR = path.resolve(__dirname, 'client/components');
-
-console.log('Appdir', APP_DIR)
-
-var config = {
-  entry: APP_DIR + '/app.jsx',
+module.exports = {
+  entry: `${SRC_DIR}/index.jsx`,
   output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    path: DIST_DIR
   },
-  module: {
-    loaders: [
+  devtool: 'eval',
+  devServer: {
+    publicPath: '/public/',
+    historyApiFallback: true
+  },
+  module : {
+    loaders : [
       {
-        test: /.jsx?/,
-        include: APP_DIR,
-        loader: 'babel-loader'
+        test : /\.jsx$|\.js$/,
+        include : SRC_DIR,
+        exclude: /node_modules/,
+        loader : 'babel-loader',      
+        query: {
+          presets: ['react', 'es2015']
+        }
       }
     ]
   }
 };
-
-
-module.exports = config;
