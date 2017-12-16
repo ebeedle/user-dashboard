@@ -30,14 +30,15 @@ class Login extends React.Component {
     event.preventDefault();
     this.setState({redirect: true})
     console.log('state :', this.state)
-    alert('submitted');
     
   }
 
   render() {
-
     if (this.state.redirect) {
-      return <Redirect to='/home'/>;
+      this.props.history.push({
+            pathname: '/home',
+            state: {email: this.state.email, owner: this.state.email}
+      })
     }
 
     return (

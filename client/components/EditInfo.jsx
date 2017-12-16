@@ -5,7 +5,7 @@ import $ from 'jquery';
 import {Redirect} from 'react-router-dom';
 import ImageUpload from './Image.jsx';
 
-class Signup extends React.Component {
+class EditInfo extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -15,7 +15,6 @@ class Signup extends React.Component {
       password: null,
       description: null,
       imageUrl: null,
-      redirect: false
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,12 +22,26 @@ class Signup extends React.Component {
     this.handleImageChange = this.handleImageChange.bind(this);
   }
 
+  componentDidMount() {
+    let email = this.props.location.state.email;
+    $.get('/userInfo', {email: this.props.location.state.email})
+    .then(userInfo => {
+      this.setState(userInfo)
+    })
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     let stateCopy = Object.assign({}, this.state);
     delete stateCopy.redirect
-    $.post('/signup', stateCopy)
-    .done(data => this.setState({redirect: true}))
+    console.log('statecopy :', stateCopy)
+    $.post('/edit', stateCopy)
+    .done(data => {
+      this.props.history.push({
+            pathname: '/home',
+            state: {email: this.state.email, owner: this.state.email}
+      })
+    })
     .fail(err => alert('there was an issue signing up. Your image might be too large. Please try again'))
   }
 
@@ -74,16 +87,15 @@ class Signup extends React.Component {
     }
     return (
       <div className="container">
-        <div className="header"> Sign Up </div>
+        <div className="header"> Edit Info </div>
         <form onSubmit={this.handleSubmit}>
-          <SingleInput onChange={this.handleInputChange} category={'firstName'}/>
-          <SingleInput onChange={this.handleInputChange} category={'lastName'}/>
+          <SingleInput onChange={this.handleInputChange} category={'firstName'} value={this.state.firstName}/>
+          <SingleInput onChange={this.handleInputChange} category={'lastName'} value={this.state.lastName}/>
           <div className="form-group">
             <label> Description </label>
-            <textarea onChange={this.handleTextAreaChange} placeholder="Description" className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea onChange={this.handleTextAreaChange} placeholder={this.state.description ? this.state.description : 'Description'} className="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
           </div>
-          <SingleInput onChange={this.handleInputChange} category={'email'}/>
-          <SingleInput onChange={this.handleInputChange} category={'password'}/>
+
           <ImageUpload onChange={this.handleImageChange} />
           <div className="display">
             <img src={this.state.imageUrl} />
@@ -95,4 +107,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default EditInfo

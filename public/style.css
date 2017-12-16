@@ -6,8 +6,66 @@
 }
 .container {
   width: 60%;
+  background: #eeeeee;
 }
-
+.bold {
+  font-weight: bold;
+}
 .display {
   margin-bottom: 5px;
+}
+
+.name {
+  font-size: 30px;
+  text-align: center;
+}
+
+.img {
+  height: 200px;
+}
+
+.img_cont {
+  text-align: center;
+}
+
+.description {
+  padding: 20px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.others {
+  font-size: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+.otherUser {
+  font-size: 15px;
+  color: blue;
+  cursor: pointer;
+}
+
+.wide {
+  width: 90%;
+}
+
+.home_left {
+  float: left;
+  width: 65%;
+}
+
+.home_right {
+  float: left;
+  width: 35%;
+}
+
+.cf:after,
+.cf:before {
+  display: table;
+  content: '';
+}
+
+.cf:after {
+  clear: both;
 }

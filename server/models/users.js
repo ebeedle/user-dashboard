@@ -21,10 +21,38 @@ class Users extends Model {
   signUp(info) {
     return this.create(info)
   }
+
+  getUsers() {
+    return new Promise(
+      function(resolve, reject) {
+        this.getAll()
+        .then(info => {
+          let shortenedUsersInfo = [];
+          for (let i = 0; i < info.length; i++) {
+            let userInfo = info[i];
+            let shortenedUserInfo = {
+              firstName: userInfo.firstName,
+              lastName: userInfo.lastName,
+              email: userInfo.email
+            }
+            shortenedUsersInfo.push(shortenedUserInfo)
+          }
+          resolve(shortenedUsersInfo);
+        })
+        .catch(e => console.log('e :', e))
+      }.bind(this)
+    )
+  }
 }
 
 module.exports = new Users();
 
+// let ident = {email: 'changed email'}
+// let params = {email: 'bob.com@gmail', firstName: 'bobby', lastName: 'baddles'}
+
+// module.exports.update(ident, params)
+// .then(x => console.log('x :'))
+// .catch(e => console.log('e :', e))
 // let info = {
 //   email: 'bill.beedle2@gmail.com',
 //   firstName : 'Bill',
@@ -32,8 +60,8 @@ module.exports = new Users();
 //   description: 'UCLA Grad, software engineer',
 // }
 
-module.exports.getAll()
-.then(x => console.log('x :', x))
+// module.exports.getUsers()
+// .then(x => console.log('x :', x))
 
 // module.exports.create()
 // let info = {

@@ -41,6 +41,23 @@ class Models {
       }
     )
   }
+
+  update(identifier, params) {
+    return new Promise(
+      function(resolve, reject) {
+        let query = identifier;
+        let newData = params;
+        this.model.findOneAndUpdate(query, newData, function(err, doc) {
+          if (err) {
+            return reject(err)
+          } else {
+            console.log('found')
+            return resolve(doc)
+          }
+        })
+      }.bind(this)
+    )
+  }
 }
 
 module.exports = Models;

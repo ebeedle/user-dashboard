@@ -32,10 +32,11 @@ class SingleInput extends React.Component {
 
   render() {
     let displayName = this.convertFromCamelCase(this.props.category);
+    let value = this.props.value ? this.props.value : displayName;
     return (
       <div className="form-group">
         <label > {displayName} </label>
-        <input placeholder={displayName} onChange={this.props.onChange} className="form-control" type="text" name={this.props.category} />
+        <input placeholder={value} onChange={this.props.onChange} className="form-control" type="text" name={this.props.category} />
       </div>
    )
   }
