@@ -16,12 +16,12 @@ module.exports.signUp = (req, res) => {
 }
 
 module.exports.getUserInfo = (req, res) => {
-  console.log('req.body email :', req.query)
+  // console.log('req.body email :', req.query)
 
   // let id = 1;
   models.users.get({email: req.query.email})
   .then(info => {
-    console.log('info :', info)
+    // console.log('info :', info)
     // let userInfo = {
     //   firstName : info[0].firstName,
     //   lastName: info[0].lastName,
@@ -45,7 +45,7 @@ module.exports.getAllUsers = (req, res) => {
   console.log('getting all users ')
   models.users.getAll()
   .then(users => {
-    console.log('users :', users)
+    // console.log('users :', users)
     res.send(users);
   })
   .catch(err => console.log(err))
