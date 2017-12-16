@@ -6,7 +6,7 @@ class TempRedirect extends React.Component {
     let email = this.props.location.state.email;
     let owner = this.props.location.state.owner;
     this.props.history.push({
-      pathname: '/home',
+      pathname: '/portal',
       state: {email: email, owner: owner}
     })
 

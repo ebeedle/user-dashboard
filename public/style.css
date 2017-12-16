@@ -4,6 +4,28 @@
   margin-top: 5px;
   margin-bottom: 20px;
 }
+
+.link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.home {
+  text-align: center;
+  font-size: 35px;
+}
+
+#home {
+  font-size: 60px;
+  line-height: 100px;
+  color: black;
+}
+
+.user_dashboard {
+  height: 100px;
+  background: #0276FD;
+}
 .container {
   width: 60%;
   background: #eeeeee;
@@ -34,10 +56,14 @@
   font-size: 20px;
 }
 
+/*.home_cont {
+ padding-bo
+}*/
+
 .others {
   font-size: 20px;
   text-align: center;
-  padding: 20px;
+  padding: 23px;
 }
 
 .otherUser {

@@ -6,7 +6,7 @@ router.get('/signup', ctrls.getPage);
 router.post('/signup', ctrls.signUp);
 router.get('/login', ctrls.getPage);
 router.get('/', ctrls.getPage);
-router.get('/home', ctrls.getPage);
+router.get('/portal', ctrls.getPage);
 router.get('/userInfo', ctrls.getUserInfo)
 router.get('/edit', ctrls.getPage);
 router.post('/edit', ctrls.editInfo);

@@ -38,7 +38,7 @@ class EditInfo extends React.Component {
     $.post('/edit', stateCopy)
     .done(data => {
       this.props.history.push({
-            pathname: '/home',
+            pathname: '/portal',
             state: {email: this.state.email, owner: this.state.email}
       })
     })

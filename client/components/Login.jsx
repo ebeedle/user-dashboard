@@ -36,7 +36,7 @@ class Login extends React.Component {
   render() {
     if (this.state.redirect) {
       this.props.history.push({
-            pathname: '/home',
+            pathname: '/portal',
             state: {email: this.state.email, owner: this.state.email}
       })
     }
