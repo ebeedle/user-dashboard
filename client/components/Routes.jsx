@@ -9,7 +9,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 const Routes = () => (
   <div>
-    <Route path="/signup" component={Signup} />
+    <Route exact path="/" component={Login} />
+    <Route path="/signup"   component={Signup} />
     <Route path="/login" component={Login} />
     <Route path="/home" component={Home} />
     <Route path="/edit" component={EditInfo} />

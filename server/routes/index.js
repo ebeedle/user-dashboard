@@ -5,6 +5,7 @@ const ctrls = require('../controllers');
 router.get('/signup', ctrls.getPage);
 router.post('/signup', ctrls.signUp);
 router.get('/login', ctrls.getPage);
+router.get('/', ctrls.getPage);
 router.get('/home', ctrls.getPage);
 router.get('/userInfo', ctrls.getUserInfo)
 router.get('/edit', ctrls.getPage);
