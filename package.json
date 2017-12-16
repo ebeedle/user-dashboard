@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -d --watch",
     "test": "mocha test/spec.js",
-    "start": "nodemon server/index.js"
+    "start": "node server/index.js"
   },
   "keywords": [],
   "author": "",
